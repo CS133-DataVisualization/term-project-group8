@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 # =================================================================
 #                 1. DATA LOADING AND PREPARATION
 # =================================================================
-df_map = pd.read_csv("Project Assignments/us_accidents_sample_500k_clean.csv")
+df_map = pd.read_csv("Data/us_accidents_sample_500k_clean.csv")
 
 # 1. Ensure 'Start_Time' is a datetime object
 df_map['Start_Time'] = pd.to_datetime(df_map['Start_Time'])
