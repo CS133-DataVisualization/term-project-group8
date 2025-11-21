@@ -7,13 +7,13 @@ from datetime import datetime, timedelta
 # =================================================================
 #                 1. DATA LOADING AND PREPARATION
 # =================================================================
-df_map = pd.read_csv("us_accidents_sample_500k_clean_Accident_Data.csv")
+df_map = pd.read_csv("Project Assignments/us_accidents_sample_500k_clean.csv")
 
 # 1. Ensure 'Start_Time' is a datetime object
 df_map['Start_Time'] = pd.to_datetime(df_map['Start_Time'])
 
 # 2. Filter for the requested period (2016-2020)
-df_map = df_map[df_map['Start_Time'].dt.year.between(2016, 2020)]
+df_map = df_map[df_map['Start_Time'].dt.year.between(2016, 2023)]
 
 # 3. Extract Year-Month for the animation frame
 df_map['Year_Month'] = df_map['Start_Time'].dt.to_period('M').astype(str)
@@ -21,8 +21,8 @@ df_map['Year_Month'] = df_map['Start_Time'].dt.to_period('M').astype(str)
 # 4. Sort and get unique frames
 df_map = df_map.sort_values(by='Year_Month').reset_index(drop=True)
 MONTH_FRAMES = sorted(df_map['Year_Month'].unique())
-# 5. Ensure required columns are present: 'Start_Lat', 'Start_Lng', 'Year_Month'
-df_map = df_map[['Start_Lat', 'Start_Lng', 'Year_Month']]
+# 5. Ensure required columns are present: 'Lat', 'Lng', 'Year_Month'
+df_map = df_map[['Lat', 'Lng', 'Year_Month']]
 
 # =================================================================
 #                         2. PLOTLY VISUALIZATION
@@ -33,15 +33,15 @@ print("Generating interactive Plotly figure...")
 # Plotly Express density_mapbox is used with the new Year_Month column
 fig = px.density_mapbox(
     df_map ,
-    lat='Start_Lat',
-    lon='Start_Lng',
+    lat='Lat',
+    lon='Lng',
     # Use the YYYY-MM field for animation
     animation_frame='Year_Month',
     # Density and map properties
     radius=6,
     zoom=2.5,
     center=dict(lat=39.8, lon=-98.6),
-    mapbox_style="carto-positron", 
+    mapbox_style="carto-darkmatter", 
     color_continuous_scale="Hot", 
     title="US Traffic Accidents Heatmap: Monthly Trend (Jan 2016 - Dec 2020)"
 )
