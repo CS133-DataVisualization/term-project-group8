@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 from datetime import datetime, timedelta
+import webbrowser
+import os
 
 
 # =================================================================
@@ -89,3 +91,4 @@ output_file = "us_accidents_monthly_heatmap.html"
 fig.write_html(output_file, auto_open=False)
 
 print(f"\nSuccessfully generated interactive monthly heatmap: {output_file}")
+webbrowser.open('file://' + os.path.realpath(output_file))
