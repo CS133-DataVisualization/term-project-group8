@@ -14,7 +14,14 @@ term-project-group8/
 │   ├── Copy_of_CS133_F25_P1_relplot_scatter
 │   └── CS133_F25_P2_categorical_interactive_transform_v1
 │── Scripts/
+│   ├── Q1_env_factors.ipynb
+│   ├── Q2_states_rates.ipynb
+│   ├── Q3_ML.ipynb
+│   ├── Q4.ipynb
+│   ├── Q5.ipynb
 │   └── interactive_heatmap.py
+│── .gitignore
 │── README.md
-│── us_accidents_monthly_heatmap.html
+│── requirements.txt
+└── us_accidents_monthly_heatmap.html
 ```
