@@ -6,9 +6,8 @@ import webbrowser
 import os
 
 
-# =================================================================
-#                 1. DATA LOADING AND PREPARATION
-# =================================================================
+
+#  DATA LOADING AND PREPARATION
 df_map = pd.read_csv("Data/us_accidents_sample_500k_clean.csv")
 
 # 1. Ensure 'Start_Time' is a datetime object
@@ -26,12 +25,6 @@ MONTH_FRAMES = sorted(df_map['Year_Month'].unique())
 # 5. Ensure required columns are present: 'Lat', 'Lng', 'Year_Month'
 df_map = df_map[['Lat', 'Lng', 'Year_Month']]
 
-# =================================================================
-#                         2. PLOTLY VISUALIZATION
-# =================================================================
-
-print("Generating interactive Plotly figure...")
-
 # Plotly Express density_mapbox is used with the new Year_Month column
 fig = px.density_mapbox(
     df_map ,
@@ -48,7 +41,7 @@ fig = px.density_mapbox(
     title="US Traffic Accidents Heatmap: Monthly Trend (Jan 2016 - Dec 2020)"
 )
 
-# Customize Layout for a smoother slider experience
+# Customize Layout 
 fig.update_layout(
     margin={"r":0,"t":50,"l":0,"b":0},
     coloraxis_colorbar=dict(
@@ -82,7 +75,7 @@ fig.update_layout(
     ]
 )
 
-# Set the play button's animation speed (1 second per frame)
+# Set the play button's animation speed
 fig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 1000
 fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 500
 
